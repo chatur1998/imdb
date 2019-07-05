@@ -4,12 +4,6 @@ import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 class Details extends Component {
-  ComponentWillMount() {
-    fetch('https://akrp-server.herokuapp.com/movies/${this.props.id}')
-      .then(resp => resp.json)
-        .then((respo) => this.setState({ details: respo }));
-  }
-
   renderDetails() {
     return this.props.details.map(details => {
       return (

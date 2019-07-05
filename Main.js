@@ -5,12 +5,16 @@ import { Card, Button } from 'react-native-elements';
 import buttonPressed from '../actions';
 
 class Main extends Component {
-  onButtonPress(id) {
-    this.props.buttonPressed(this.props.movie.id);
+  componentWillMount() {
+    this.props.fetchMovies();
   }
 
-  renderMovies(movie) {
-    return this.props.imdb.map(movie => {
+  onButtonPress(id) {
+    this.props.buttonPressed(this.props.movie.id);
+  }  
+
+  renderMovies() {
+    return this.props.data.map(movie => {
       <Details record={movie} />
 
       <Card
@@ -35,5 +39,9 @@ class Main extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { data: state.movie.imdb }
+}
 
-export default connect(null, { buttonPressed })(Main);
+
+export default connect(null, { buttonPressed, fetchMovies })(Main);

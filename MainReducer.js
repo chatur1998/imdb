@@ -1,13 +1,16 @@
-import BUTTON_PRESSED from '../actions/types';
+import { BUTTON_PRESSED, FETCH_MOVIE } from '../actions/types';
 
 const INITIAL_STATE = {
-  id: ''
+  imdb: [],
+  details: []
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case FETCH_MOVIE:
+      return { ...state, imdb: action.payload };
     case BUTTON_PRESSED:
-      return { ...state, id: action.payload };
+      return { ...state, details: action.payload };
     default:
         return state;
   }
